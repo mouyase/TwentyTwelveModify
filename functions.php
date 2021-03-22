@@ -142,40 +142,40 @@ require get_template_directory() . '/inc/custom-header.php';
  *
  * @return string Font stylesheet or empty string if disabled.
  */
-function twentytwelve_get_font_url() {
-	$font_url = '';
+// function twentytwelve_get_font_url() {
+// 	$font_url = '';
 
-	/*
-	 * translators: If there are characters in your language that are not supported
-	 * by Open Sans, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'twentytwelve' ) ) {
-		$subsets = 'latin,latin-ext';
+// 	/*
+// 	 * translators: If there are characters in your language that are not supported
+// 	 * by Open Sans, translate this to 'off'. Do not translate into your own language.
+// 	 */
+// 	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'twentytwelve' ) ) {
+// 		$subsets = 'latin,latin-ext';
 
-		/*
-		 * translators: To add an additional Open Sans character subset specific to your language,
-		 * translate this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language.
-		 */
-		$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'twentytwelve' );
+// 		/*
+// 		 * translators: To add an additional Open Sans character subset specific to your language,
+// 		 * translate this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language.
+// 		 */
+// 		$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'twentytwelve' );
 
-		if ( 'cyrillic' === $subset ) {
-			$subsets .= ',cyrillic,cyrillic-ext';
-		} elseif ( 'greek' === $subset ) {
-			$subsets .= ',greek,greek-ext';
-		} elseif ( 'vietnamese' === $subset ) {
-			$subsets .= ',vietnamese';
-		}
+// 		if ( 'cyrillic' === $subset ) {
+// 			$subsets .= ',cyrillic,cyrillic-ext';
+// 		} elseif ( 'greek' === $subset ) {
+// 			$subsets .= ',greek,greek-ext';
+// 		} elseif ( 'vietnamese' === $subset ) {
+// 			$subsets .= ',vietnamese';
+// 		}
 
-		$query_args = array(
-			'family'  => urlencode( 'Open Sans:400italic,700italic,400,700' ),
-			'subset'  => urlencode( $subsets ),
-			'display' => urlencode( 'fallback' ),
-		);
-		$font_url   = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-	}
+// 		$query_args = array(
+// 			'family'  => urlencode( 'Open Sans:400italic,700italic,400,700' ),
+// 			'subset'  => urlencode( $subsets ),
+// 			'display' => urlencode( 'fallback' ),
+// 		);
+// 		$font_url   = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+// 	}
 
-	return $font_url;
-}
+// 	return $font_url;
+// }
 
 /**
  * Enqueue scripts and styles for front end.
@@ -196,10 +196,10 @@ function twentytwelve_scripts_styles() {
 	// Adds JavaScript for handling the navigation menu hide-and-show behavior.
 	wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20141205', true );
 
-	$font_url = twentytwelve_get_font_url();
-	if ( ! empty( $font_url ) ) {
-		wp_enqueue_style( 'twentytwelve-fonts', esc_url_raw( $font_url ), array(), null );
-	}
+	// $font_url = twentytwelve_get_font_url();
+	// if ( ! empty( $font_url ) ) {
+	// 	wp_enqueue_style( 'twentytwelve-fonts', esc_url_raw( $font_url ), array(), null );
+	// }
 
 	// Loads our main stylesheet.
 	wp_enqueue_style( 'twentytwelve-style', get_stylesheet_uri(), array(), '20190507' );
@@ -222,7 +222,7 @@ function twentytwelve_block_editor_styles() {
 	// Block styles.
 	wp_enqueue_style( 'twentytwelve-block-editor-style', get_template_directory_uri() . '/css/editor-blocks.css', array(), '20190406' );
 	// Add custom fonts.
-	wp_enqueue_style( 'twentytwelve-fonts', twentytwelve_get_font_url(), array(), null );
+	// wp_enqueue_style( 'twentytwelve-fonts', twentytwelve_get_font_url(), array(), null );
 }
 add_action( 'enqueue_block_editor_assets', 'twentytwelve_block_editor_styles' );
 
@@ -235,21 +235,21 @@ add_action( 'enqueue_block_editor_assets', 'twentytwelve_block_editor_styles' );
  * @param string  $relation_type The relation type the URLs are printed.
  * @return array URLs to print for resource hints.
  */
-function twentytwelve_resource_hints( $urls, $relation_type ) {
-	if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
-		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
-			$urls[] = array(
-				'href' => 'https://fonts.gstatic.com',
-				'crossorigin',
-			);
-		} else {
-			$urls[] = 'https://fonts.gstatic.com';
-		}
-	}
+// function twentytwelve_resource_hints( $urls, $relation_type ) {
+// 	if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+// 		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
+// 			$urls[] = array(
+// 				'href' => 'https://fonts.gstatic.com',
+// 				'crossorigin',
+// 			);
+// 		} else {
+// 			$urls[] = 'https://fonts.gstatic.com';
+// 		}
+// 	}
 
-	return $urls;
-}
-add_filter( 'wp_resource_hints', 'twentytwelve_resource_hints', 10, 2 );
+// 	return $urls;
+// }
+// add_filter( 'wp_resource_hints', 'twentytwelve_resource_hints', 10, 2 );
 
 /**
  * Filter TinyMCE CSS path to include Google Fonts.
@@ -263,22 +263,22 @@ add_filter( 'wp_resource_hints', 'twentytwelve_resource_hints', 10, 2 );
  * @param string $mce_css CSS path to load in TinyMCE.
  * @return string Filtered CSS path.
  */
-function twentytwelve_mce_css( $mce_css ) {
-	$font_url = twentytwelve_get_font_url();
+// function twentytwelve_mce_css( $mce_css ) {
+// 	$font_url = twentytwelve_get_font_url();
 
-	if ( empty( $font_url ) ) {
-		return $mce_css;
-	}
+// 	if ( empty( $font_url ) ) {
+// 		return $mce_css;
+// 	}
 
-	if ( ! empty( $mce_css ) ) {
-		$mce_css .= ',';
-	}
+// 	if ( ! empty( $mce_css ) ) {
+// 		$mce_css .= ',';
+// 	}
 
-	$mce_css .= esc_url_raw( str_replace( ',', '%2C', $font_url ) );
+// 	$mce_css .= esc_url_raw( str_replace( ',', '%2C', $font_url ) );
 
-	return $mce_css;
-}
-add_filter( 'mce_css', 'twentytwelve_mce_css' );
+// 	return $mce_css;
+// }
+// add_filter( 'mce_css', 'twentytwelve_mce_css' );
 
 /**
  * Filter the page title.
@@ -584,9 +584,9 @@ function twentytwelve_body_class( $classes ) {
 	}
 
 	// Enable custom font class only if the font CSS is queued to load.
-	if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) ) {
-		$classes[] = 'custom-font-enabled';
-	}
+	// if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) ) {
+	// 	$classes[] = 'custom-font-enabled';
+	// }
 
 	if ( ! is_multi_author() ) {
 		$classes[] = 'single-author';
